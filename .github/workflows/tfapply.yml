@@ -2,6 +2,7 @@ on:
   pull_request:
     types:
       - closed
+  repository_dispatch:
 
 jobs:
   terraform:
