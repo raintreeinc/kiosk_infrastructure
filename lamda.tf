@@ -32,9 +32,6 @@ resource "aws_lambda_function" "kiosk-lambda-batch" {
  function_name = "${lower(local.local_data.tag_prefix)}-s3-eventbridge-sqs-dailybatch-process-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
  role          = aws_iam_role.iam_for_lambda.arn
  handler       = "index.test"
-
-
-
  runtime = "dotnet6"
 
 
