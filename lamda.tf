@@ -23,7 +23,7 @@ EOF
 
 
 
-#resource "aws_lambda_function" "kiosk-lambda" {
+#resource "aws_lambda_function" "kiosk-lambda-batch" {
  
 #   filename      = "lambda_function_payload.zip"
 #  s3_bucket = "kiosk-rtree-api-new" 
@@ -39,3 +39,16 @@ EOF
 
 
 #}
+
+
+
+resource "aws_lambda_function" "kiosk-lambda-batch" {
+  filename      = "/c/Users/sivakrishnako/Downloads/AspNetCoreFunction-CodeUri-Or-ImageUri-637890741703279843-637890743207211420.zip"
+  function_name = "lambda_function_name"
+  role          = aws_iam_role.iam_for_lambda.arn
+  handler       = "index.test"
+  runtime       = "nodejs14.x"
+  ephemeral_storage {
+    size = 10240 # Min 512 MB and the Max 10240 MB
+  }
+}
