@@ -11,19 +11,19 @@ resource "aws_s3_bucket" "batch" {
 }
 
 resource "aws_s3_bucket_acl" "batch" {
-  bucket                = aws_s3_bucket.this.id
+  bucket                = aws_s3_bucket.batch.id
   acl                   = "private"
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "batch" {
-  bucket                = aws_s3_bucket.batch.bucket
-  rule {
-    apply_server_side_encryption_by_default {
-      kms_master_key_id = data.aws_kms_key.batch.id
-      sse_algorithm     = "aws:kms"
-    }
-  }
-}
+# resource "aws_s3_bucket_server_side_encryption_configuration" "batch" {
+#   bucket                = aws_s3_bucket.batch.bucket
+#   rule {
+#     apply_server_side_encryption_by_default {
+#       kms_master_key_id = data.aws_kms_key.batch.id
+#       sse_algorithm     = "aws:kms"
+#     }
+#   }
+# }
 
 resource "aws_s3_bucket_versioning" "batch" {
   bucket = aws_s3_bucket.batch.id
@@ -62,7 +62,7 @@ resource "aws_cloudwatch_event_target" "batch" {
 resource "aws_sqs_queue" "batch" {
   name                      = "${lower(local.local_data.tag_prefix)}-batchdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   delay_seconds             = 90
-  max_message_size          = 256
+  max_message_size          = 1025
   message_retention_seconds = 86400
   receive_wait_time_seconds = 10
 
