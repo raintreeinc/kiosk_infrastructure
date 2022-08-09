@@ -33,40 +33,40 @@ resource "aws_s3_bucket_versioning" "batch" {
 }
 
 
-# resource "aws_cloudwatch_event_rule" "kiosk-event-bridge-batch" {
-#   name        = "${lower(local.local_data.tag_prefix)}-dailybatchdata-sqs-ebrule-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-#   description = "Capture each AWS Console s3 events"
+resource "aws_cloudwatch_event_rule" "kiosk-event-bridge-batch" {
+  name        = "${lower(local.local_data.tag_prefix)}-dailybatchdata-sqs-ebrule-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  description = "Capture each AWS Console s3 events"
 
-#   event_pattern = <<EOF
-# {
+  event_pattern = <<EOF
+{
   
-#   "source": ["aws.s3"],
-#   "detail-type": ["Object Created"],
-#   "detail": {
-#     "bucket": {
-#       "name": ["rt-s3-raintree-batchdata-sqa-kiosk"]
-#     }
-#   }
-# }
-# EOF
-# }
+  "source": ["aws.s3"],
+  "detail-type": ["Object Created"],
+  "detail": {
+    "bucket": {
+      "name": ["rt-s3-raintree-batchdata-sqa-kiosk"]
+    }
+  }
+}
+EOF
+}
 
 
-# resource "aws_cloudwatch_event_target" "batch" {
-#   rule      = aws_cloudwatch_event_rule.kiosk-event-bridge-batch.name
-#   target_id = "SendToSQS"
-#   arn       = aws_sqs_queue.batch.arn
-# }
+resource "aws_cloudwatch_event_target" "batch" {
+  rule      = aws_cloudwatch_event_rule.kiosk-event-bridge-batch.name
+  target_id = "SendToSQS"
+  arn       = aws_sqs_queue.batch.arn
+}
 
 
-# resource "aws_sqs_queue" "batch" {
-#   name                      = "${lower(local.local_data.tag_prefix)}-batchdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-#   delay_seconds             = 90
-#   max_message_size          = 1026
-#   message_retention_seconds = 86400
-#   receive_wait_time_seconds = 10
+resource "aws_sqs_queue" "batch" {
+  name                      = "${lower(local.local_data.tag_prefix)}-batchdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  delay_seconds             = 90
+  max_message_size          = 1026
+  message_retention_seconds = 86400
+  receive_wait_time_seconds = 10
 
-#   tags = {
-#     Environment = var.Environment
-#   }
-# }
+  tags = {
+    Environment = var.Environment
+  }
+}
