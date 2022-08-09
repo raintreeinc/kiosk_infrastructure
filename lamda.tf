@@ -43,7 +43,7 @@ EOF
 
 
 resource "aws_lambda_function" "kiosk-lambda-batch" {
-  filename      = "/c/Users/sivakrishnako/Downloads/AspNetCoreFunction-CodeUri-Or-ImageUri-637890741703279843-637890743207211420.zip"
+  filename      = "Users/sivakrishnako/Downloads/AspNetCoreFunction-CodeUri-Or-ImageUri-637890741703279843-637890743207211420.zip"
   function_name = "lambda_function_name"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "index.test"
