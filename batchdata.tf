@@ -15,15 +15,15 @@ resource "aws_s3_bucket_acl" "batch" {
   acl                   = "private"
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "batch" {
-  bucket                = aws_s3_bucket.batch.bucket
-  rule {
-    apply_server_side_encryption_by_default {
-      kms_master_key_id = data.aws_kms_key.batch.id
-      sse_algorithm     = "aws:kms"
-    }
-  }
-}
+# resource "aws_s3_bucket_server_side_encryption_configuration" "batch" {
+#   bucket                = aws_s3_bucket.batch.bucket
+#   rule {
+#     apply_server_side_encryption_by_default {
+#       kms_master_key_id = data.aws_kms_key.batch.id
+#       sse_algorithm     = "aws:kms"
+#     }
+#   }
+# }
 
 resource "aws_s3_bucket_versioning" "batch" {
   bucket = aws_s3_bucket.batch.id
