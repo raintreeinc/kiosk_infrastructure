@@ -1,19 +1,19 @@
-# resource "aws_s3_bucket" "batch" {
-#   bucket        = "${lower(local.local_data.tag_prefix)}-s3-raintree-batchdata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-#   tags = {
-#     Name        = "${lower(local.local_data.tag_prefix)}-s3-raintree-batchdata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-#   }
-#   lifecycle {
-#     ignore_changes = [
-#       server_side_encryption_configuration
-#     ]
-#   }
-# }
+resource "aws_s3_bucket" "batch" {
+  bucket        = "${lower(local.local_data.tag_prefix)}-s3-raintree-batchdata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  tags = {
+    Name        = "${lower(local.local_data.tag_prefix)}-s3-raintree-batchdata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  }
+  lifecycle {
+    ignore_changes = [
+      server_side_encryption_configuration
+    ]
+  }
+}
 
-# resource "aws_s3_bucket_acl" "batch" {
-#   bucket                = aws_s3_bucket.batch.id
-#   acl                   = "private"
-# }
+resource "aws_s3_bucket_acl" "batch" {
+  bucket                = aws_s3_bucket.batch.id
+  acl                   = "private"
+}
 
 # resource "aws_s3_bucket_server_side_encryption_configuration" "batch" {
 #   bucket                = aws_s3_bucket.batch.bucket
@@ -25,12 +25,12 @@
 #   }
 # }
 
-# resource "aws_s3_bucket_versioning" "batch" {
-#   bucket = aws_s3_bucket.batch.id
-#   versioning_configuration {
-#     status = "Enabled"
-#   }
-# }
+resource "aws_s3_bucket_versioning" "batch" {
+  bucket = aws_s3_bucket.batch.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
 
 
 # resource "aws_cloudwatch_event_rule" "kiosk-event-bridge-batch" {
@@ -59,14 +59,14 @@
 # }
 
 
-resource "aws_sqs_queue" "batch" {
-  name                      = "${lower(local.local_data.tag_prefix)}-batchdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-  delay_seconds             = 90
-  max_message_size          = 1026
-  message_retention_seconds = 86400
-  receive_wait_time_seconds = 10
+# resource "aws_sqs_queue" "batch" {
+#   name                      = "${lower(local.local_data.tag_prefix)}-batchdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+#   delay_seconds             = 90
+#   max_message_size          = 1026
+#   message_retention_seconds = 86400
+#   receive_wait_time_seconds = 10
 
-  tags = {
-    Environment = var.Environment
-  }
-}
+#   tags = {
+#     Environment = var.Environment
+#   }
+# }
