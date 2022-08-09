@@ -62,7 +62,7 @@
 resource "aws_sqs_queue" "batch" {
   name                      = "${lower(local.local_data.tag_prefix)}-batchdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   delay_seconds             = 90
-  max_message_size          = 1025
+  max_message_size          = 1026
   message_retention_seconds = 86400
   receive_wait_time_seconds = 10
 
