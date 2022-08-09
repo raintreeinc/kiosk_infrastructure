@@ -15,15 +15,15 @@ resource "aws_s3_bucket_acl" "event" {
   acl                   = "private"
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "event" {
-  bucket                = aws_s3_bucket.event.bucket
-  rule {
-    apply_server_side_encryption_by_default {
-      kms_master_key_id = data.aws_kms_key.event.id
-      sse_algorithm     = "aws:kms"
-    }
-  }
-}
+# resource "aws_s3_bucket_server_side_encryption_configuration" "event" {
+#   bucket                = aws_s3_bucket.event.bucket
+#   rule {
+#     apply_server_side_encryption_by_default {
+#       kms_master_key_id = data.aws_kms_key.event.id
+#       sse_algorithm     = "aws:kms"
+#     }
+#   }
+# }
 
 resource "aws_s3_bucket_versioning" "event" {
   bucket = aws_s3_bucket.event.id
@@ -33,40 +33,40 @@ resource "aws_s3_bucket_versioning" "event" {
 }
 
 
-resource "aws_cloudwatch_event_rule" "kiosk-event-bridge-event" {
-  name        = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-ebrule-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-  description = "Capture each AWS Console s3 events"
+# resource "aws_cloudwatch_event_rule" "kiosk-event-bridge-event" {
+#   name        = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-ebrule-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+#   description = "Capture each AWS Console s3 events"
 
-  event_pattern = <<EOF
-{
+#   event_pattern = <<EOF
+# {
   
-  "source": ["aws.s3"],
-  "detail-type": ["Object Created"],
-  "detail": {
-    "bucket": {
-      "name": ["rt-s3-raintree-eventdata-sqa-kiosk"]
-    }
-  }
-}
-EOF
-}
+#   "source": ["aws.s3"],
+#   "detail-type": ["Object Created"],
+#   "detail": {
+#     "bucket": {
+#       "name": ["rt-s3-raintree-eventdata-sqa-kiosk"]
+#     }
+#   }
+# }
+# EOF
+# }
 
 
-resource "aws_cloudwatch_event_target" "sqs" {
-  rule      = aws_cloudwatch_event_rule.kiosk-event-bridge-event.name
-  target_id = "SendToSQS"
-  arn       = aws_sqs_queue.event.arn
-}
+# resource "aws_cloudwatch_event_target" "sqs" {
+#   rule      = aws_cloudwatch_event_rule.kiosk-event-bridge-event.name
+#   target_id = "SendToSQS"
+#   arn       = aws_sqs_queue.event.arn
+# }
 
 
 
-resource "aws_sqs_queue" "event" {
-  name                      = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-  delay_seconds             = 90
-  max_message_size          = 1026
-  message_retention_seconds = 86400
-  receive_wait_time_seconds = 10
-  tags = {
-    Name                    = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-  }
-}
+# resource "aws_sqs_queue" "event" {
+#   name                      = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+#   delay_seconds             = 90
+#   max_message_size          = 1026
+#   message_retention_seconds = 86400
+#   receive_wait_time_seconds = 10
+#   tags = {
+#     Name                    = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+#   }
+# }
