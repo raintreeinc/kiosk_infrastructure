@@ -35,7 +35,7 @@ resource "aws_lambda_function" "kiosk-lambda-batch" {
 
 
 
- runtime = "dotnet6"
+ runtime = "dotnet6.x"
 
 
 }
