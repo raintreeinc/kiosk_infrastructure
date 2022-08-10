@@ -63,7 +63,7 @@ resource "aws_lambda_function" "kiosk-lambda" {
 
 
 # lambda-2
-resource "aws_lambda_function" "kiosk-lambda" {
+resource "aws_lambda_function" "kiosk-lambda-dev" {
 #   filename      = "lambda_function_payload.zip"
   s3_bucket = "rt-s3-lambda-webapp-dev-kiosk" 
   s3_key = "AspNetCoreFunction-CodeUri-Or-ImageUri-637952927665274965-637952927669751362.zip"
