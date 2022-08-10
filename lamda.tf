@@ -5,22 +5,52 @@ resource "aws_iam_role" "iam_for_lambda" {
 {
   "Version": "2012-10-17",
   "Statement": [
-    {
-      "Action": [
-                "sqs:*",
-                "logs:*",
-                "ec2:*",
-                "dynamodb:*",
-                "s3:*",
-                "ec2:*",
-                "logs:*",
-                "kinesis:*"
-            ],
-            "Resource": "*",
+        {
+            "Sid": "VisualEditor0",
             "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
+            "Action": [
+                "sqs:DeleteMessage",
+                "dynamodb:ListTables",
+                "sqs:ReceiveMessage",
+                "sqs:*",
+                "logs:CreateLogStream",
+                "ec2:DescribeNetworkInterfaces",
+                "dynamodb:DescribeTable",
+                "dynamodb:GetItem",
+                "dynamodb:BatchGetItem",
+                "sqs:GetQueueUrl",
+                "dynamodb:BatchWriteItem",
+                "sqs:ChangeMessageVisibility",
+                "dynamodb:PutItem",
+                "s3:*",
+                "ec2:DeleteNetworkInterface",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:UpdateItem",
+                "sqs:GetQueueAttributes",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents",
+                "ec2:CreateNetworkInterface",
+                "dynamodb:CreateTable",
+                "sqs:ListDeadLetterSourceQueues",
+                "dynamodb:UpdateTable",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:DescribeStream",
+                "dynamodb:ListStreams",
+                "kinesis:DescribeStream",
+                "kinesis:PutRecord",
+                "kinesis:PutRecords",
+                "kinesis:GetShardIterator",
+                "kinesis:GetRecords",
+                "kinesis:ListShards",
+                "kinesis:DescribeStreamSummary",
+                "kinesis:RegisterStreamConsumer",
+                "kinesis:ListStreams"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 EOF
 }
