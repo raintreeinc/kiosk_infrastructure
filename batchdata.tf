@@ -44,7 +44,7 @@ resource "aws_cloudwatch_event_rule" "kiosk-event-bridge-batch" {
   "detail-type": ["Object Created"],
   "detail": {
     "bucket": {
-      "name": ["rt-s3-raintree-batchdata-sqa-kiosk"]
+      "name": ["${lower(local.local_data.tag_prefix)}-s3-raintree-batchdata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"]
     }
   }
 }
