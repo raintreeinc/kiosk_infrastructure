@@ -15,6 +15,11 @@ resource "aws_s3_bucket_acl" "event" {
   acl                   = "private"
 }
 
+resource "aws_s3_bucket_notification" "eventnotification" {
+  bucket                = aws_s3_bucket.event.id
+  eventbridge           = true
+}
+
 
 
 resource "aws_s3_bucket_versioning" "event" {
@@ -54,10 +59,11 @@ resource "aws_cloudwatch_event_target" "sqs" {
 
 resource "aws_sqs_queue" "event" {
   name                      = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-  delay_seconds             = 90
-  max_message_size          = 1026
+  delay_seconds             = 5
+  max_message_size          = 262144
   message_retention_seconds = 86400
   receive_wait_time_seconds = 10
+  visibility_timeout_seconds = 180
   tags = {
     Name                    = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }

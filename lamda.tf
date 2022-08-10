@@ -54,6 +54,7 @@ resource "aws_lambda_function" "kiosk-lambda" {
   function_name = "rt-s3-eventbridge-sqs-dailybatch-process-sqa-kiosk"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "index.test"
+  timeout       = 600
 
   runtime = "dotnet6"
 
@@ -71,6 +72,7 @@ resource "aws_lambda_function" "kiosk-lambda-dev" {
   function_name = "rt-s3-eventbridge-sqs-eventdata-process-sqa-kiosk"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "index.test"
+  timeout       = 600
 
   runtime = "dotnet6"
 
