@@ -10,7 +10,6 @@
   }
 }
 
-
 resource "aws_s3_bucket_acl" "event" {
   bucket                = aws_s3_bucket.event.id
   acl                   = "private"
