@@ -62,17 +62,17 @@ resource "aws_lambda_function" "kiosk-lambda" {
 
 
 
-#lambda-2
-# resource "aws_lambda_function" "kiosk-lambda" {
-# #   filename      = "lambda_function_payload.zip"
-#   s3_bucket = "kiosk-rtree-api-new" 
-#   s3_key = "AspNetCoreFunction-CodeUri-Or-ImageUri-637890741703279843-637890743207211420 (1).zip"
-# #   s3_object_version = local.s3_object_version
-#   function_name = "rt-s3-eventbridge-sqs-eventdata-process-sqa-kiosk"
-#   role          = aws_iam_role.iam_for_lambda.arn
-#   handler       = "index.test"
+lambda-2
+resource "aws_lambda_function" "kiosk-lambda" {
+#   filename      = "lambda_function_payload.zip"
+  s3_bucket = "rt-s3-lambda-webapp-dev-kiosk" 
+  s3_key = "AspNetCoreFunction-CodeUri-Or-ImageUri-637952927665274965-637952927669751362.zip"
+#   s3_object_version = local.s3_object_version
+  function_name = "rt-s3-eventbridge-sqs-eventdata-process-sqa-kiosk"
+  role          = aws_iam_role.iam_for_lambda.arn
+  handler       = "index.test"
 
-#   runtime = "dotnet6"
+  runtime = "dotnet6"
 
 
-# }
+}
