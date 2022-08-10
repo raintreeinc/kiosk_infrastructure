@@ -82,7 +82,7 @@ resource "aws_sqs_queue_policy" "test_sqs_policy" {
       "Sid": "First",
       "Effect": "Allow",
       "Principal": "*",
-      "Action": "sqs:SendMessage",
+      "Action": "sqs:*",
       "Resource": "${aws_sqs_queue.batch.arn}"
     }
   ]
