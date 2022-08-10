@@ -1,4 +1,4 @@
- resource "aws_s3_bucket" "event" {
+ resource "aws_s3_bucket" "webapp" {
   bucket        = "${lower(local.local_data.tag_prefix)}-s3-webappassets-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   tags = {
     Name        = "${lower(local.local_data.tag_prefix)}-s3-webappassets-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
@@ -10,15 +10,15 @@
   }
 }
 
-resource "aws_s3_bucket_acl" "event" {
-  bucket                = aws_s3_bucket.event.id
+resource "aws_s3_bucket_acl" "webapp" {
+  bucket                = aws_s3_bucket.webapp.id
   acl                   = "private"
 }
 
 
 
-resource "aws_s3_bucket_versioning" "event" {
-  bucket = aws_s3_bucket.event.id
+resource "aws_s3_bucket_versioning" "webapp" {
+  bucket = aws_s3_bucket.webapp.id
   versioning_configuration {
     status = "Enabled"
   }
