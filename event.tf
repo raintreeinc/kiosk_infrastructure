@@ -15,7 +15,7 @@ resource "aws_s3_bucket_acl" "event" {
   acl                   = "private"
 }
 
-resource "aws_s3_bucket_notification" "batchnotification" {
+resource "aws_s3_bucket_notification" "eventnotification" {
   bucket                = aws_s3_bucket.event.id
   eventbridge           = true
 }
