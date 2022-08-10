@@ -91,8 +91,8 @@ POLICY
 }
 
 
-# resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping"{
-#    event_source_arn = aws_sqs_queue.batch.arn 
-#    function_name = aws_lambda_function.kiosk-lambda-batch.arn
+resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping"{
+   event_source_arn = aws_sqs_queue.batch.arn 
+   function_name = aws_lambda_function.kiosk-lambda.arn
    
-#  }
+ }
