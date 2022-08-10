@@ -36,7 +36,7 @@ resource "aws_cloudwatch_event_rule" "kiosk-event-bridge-event" {
   "detail-type": ["Object Created"],
   "detail": {
     "bucket": {
-      "name": "${lower(local.local_data.tag_prefix)}-s3-raintree-eventdata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}" 
+      "name": ["${lower(local.local_data.tag_prefix)}-s3-raintree-eventdata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"]
     }
   }
 }
