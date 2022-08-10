@@ -5,56 +5,18 @@ resource "aws_iam_role" "iam_for_lambda" {
 {
   "Version": "2012-10-17",
   "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "sqs:DeleteMessage",
-                "dynamodb:ListTables",
-                "sqs:ReceiveMessage",
-                "sqs:*",
-                "logs:CreateLogStream",
-                "ec2:DescribeNetworkInterfaces",
-                "dynamodb:DescribeTable",
-                "dynamodb:GetItem",
-                "dynamodb:BatchGetItem",
-                "sqs:GetQueueUrl",
-                "dynamodb:BatchWriteItem",
-                "sqs:ChangeMessageVisibility",
-                "dynamodb:PutItem",
-                "s3:*",
-                "ec2:DeleteNetworkInterface",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:UpdateItem",
-                "sqs:GetQueueAttributes",
-                "logs:CreateLogGroup",
-                "logs:PutLogEvents",
-                "ec2:CreateNetworkInterface",
-                "dynamodb:CreateTable",
-                "sqs:ListDeadLetterSourceQueues",
-                "dynamodb:UpdateTable",
-                "dynamodb:GetRecords",
-                "dynamodb:GetShardIterator",
-                "dynamodb:DescribeStream",
-                "dynamodb:ListStreams",
-                "kinesis:DescribeStream",
-                "kinesis:PutRecord",
-                "kinesis:PutRecords",
-                "kinesis:GetShardIterator",
-                "kinesis:GetRecords",
-                "kinesis:ListShards",
-                "kinesis:DescribeStreamSummary",
-                "kinesis:RegisterStreamConsumer",
-                "kinesis:ListStreams"
-            ],
-            "Resource": "*"
-        }
-    ]
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
 }
 EOF
 }
-
 
 resource "aws_iam_policy" "policy" {
   name        = "test_policy"
