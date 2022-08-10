@@ -129,20 +129,6 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   viewer_certificate {
     cloudfront_default_certificate = true
   }
-  custom_error_response = [
-    {
-      "error_caching_min_ttl" = 3600,
-      "error_code"            = 500,
-      "response_code"         = 500,
-      "response_page_path"    = "/error.html",
-    },
-    {
-      "error_caching_min_ttl" = 3600,
-      "error_code"            = 404,
-      "response_code"         = 404,
-      "response_page_path"    = "/404.html",
-    },
-  ]
 }
 output "cloudfront_domain_name" {
   value = aws_cloudfront_distribution.s3_distribution.domain_name
