@@ -1,4 +1,4 @@
- resource "aws_s3_bucket" "event" {
+ resource "aws_s3_bucket" "insuranc" {
   bucket        = "${lower(local.local_data.tag_prefix)}-s3-insurancedata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   tags = {
     Name        = "${lower(local.local_data.tag_prefix)}-s3-insurancedata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
@@ -10,15 +10,15 @@
   }
 }
 
-resource "aws_s3_bucket_acl" "event" {
-  bucket                = aws_s3_bucket.event.id
+resource "aws_s3_bucket_acl" "insuranc" {
+  bucket                = aws_s3_bucket.insuranc.id
   acl                   = "private"
 }
 
 
 
-resource "aws_s3_bucket_versioning" "event" {
-  bucket = aws_s3_bucket.event.id
+resource "aws_s3_bucket_versioning" "insuranc" {
+  bucket = aws_s3_bucket.insuranc.id
   versioning_configuration {
     status = "Enabled"
   }
