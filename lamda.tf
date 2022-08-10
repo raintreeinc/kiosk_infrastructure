@@ -62,7 +62,7 @@ resource "aws_lambda_function" "kiosk-lambda" {
 
 
 
-lambda-2
+# lambda-2
 resource "aws_lambda_function" "kiosk-lambda" {
 #   filename      = "lambda_function_payload.zip"
   s3_bucket = "rt-s3-lambda-webapp-dev-kiosk" 
