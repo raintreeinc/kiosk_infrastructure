@@ -26,7 +26,14 @@ resource "aws_iam_policy" "policy" {
     Statement = [
       {
         Action = [
-          "sqs:*",
+           "sqs:*",
+           "logs:*",
+           "ec2:*",
+           "dynamodb:*",
+           "s3:*",
+           "ec2:*",
+           "logs:*",
+           "kinesis:*"
         ]
         Effect   = "Allow"
         Resource = "*"
