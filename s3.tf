@@ -3,11 +3,6 @@ resource "aws_s3_bucket" "this" {
   tags = {
     Name        = "${lower(local.local_data.tag_prefix)}-s3-frontend-webapp-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }
-  lifecycle {
-    ignore_changes = [
-      server_side_encryption_configuration
-    ]
-  }
 }
 
 resource "aws_s3_bucket_acl" "this" {
