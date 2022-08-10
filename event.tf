@@ -66,6 +66,6 @@ resource "aws_sqs_queue" "event" {
 
 resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping"{
    event_source_arn = aws_sqs_queue.event.arn 
-   function_name = aws_lambda_function.kiosk-lambda.arn
+   function_name = aws_lambda_function.kiosk-lambda-dev.arn
    
    }
