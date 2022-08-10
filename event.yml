@@ -45,21 +45,21 @@ EOF
 }
 
 
-resource "aws_cloudwatch_event_target" "sqs" {
-  rule      = aws_cloudwatch_event_rule.kiosk-event-bridge-event.name
-  target_id = "SendToSQS"
-  arn       = aws_sqs_queue.event.arn
-}
-
-
-
-# resource "aws_sqs_queue" "event" {
-#   name                      = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-#   delay_seconds             = 90
-#   max_message_size          = 1026
-#   message_retention_seconds = 86400
-#   receive_wait_time_seconds = 10
-#   tags = {
-#     Name                    = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-#   }
+# resource "aws_cloudwatch_event_target" "sqs" {
+#   rule      = aws_cloudwatch_event_rule.kiosk-event-bridge-event.name
+#   target_id = "SendToSQS"
+#   arn       = aws_sqs_queue.event.arn
 # }
+
+
+
+resource "aws_sqs_queue" "event" {
+  name                      = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  delay_seconds             = 90
+  max_message_size          = 1026
+  message_retention_seconds = 86400
+  receive_wait_time_seconds = 10
+  tags = {
+    Name                    = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  }
+}
