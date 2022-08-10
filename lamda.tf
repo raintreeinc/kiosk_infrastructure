@@ -19,33 +19,60 @@ EOF
 }
 
 
+resource "aws_iam_policy" "policy" {
+  name        = "test_policy"
+  description = "policy for lambda role"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "sqs:*",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+}
+resource "aws_iam_role_policy_attachment" "test-attach" {
+  role       = aws_iam_role.iam_for_lambda.name
+  policy_arn = aws_iam_policy.policy.arn
+}
 
 
 
+#lambda-1
 
-resource "aws_lambda_function" "kiosk-lambda-batch" {
+
+resource "aws_lambda_function" "kiosk-lambda" {
  
 #   filename      = "lambda_function_payload.zip"
- s3_bucket = "kiosk-rtree-demo-siva" 
- s3_key = "AspNetCoreFunction-CodeUri-Or-ImageUri-637890741703279843-637890743207211420.zip"
+  s3_bucket = "kiosk-rtree-api-new" 
+  s3_key = "AspNetCoreFunction-CodeUri-Or-ImageUri-637890741703279843-637890743207211420 (1).zip"
 #   s3_object_version = local.s3_object_version
- function_name = "${lower(local.local_data.tag_prefix)}-s3-eventbridge-sqs-dailybatch-process-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
- role          = aws_iam_role.iam_for_lambda.arn
- handler       = "index.test"
- runtime = "dotnet6"
+  function_name = "rt-s3-eventbridge-sqs-dailybatch-process-sqa-kiosk"
+  role          = aws_iam_role.iam_for_lambda.arn
+  handler       = "index.test"
+
+  runtime = "dotnet6"
 
 
 }
 
 
 
-# resource "aws_lambda_function" "kiosk-lambda-batch" {
-#   filename      = "AspNetCoreFunction-CodeUri-Or-ImageUri-637890741703279843-637890743207211420.zip"
-#   function_name = "lambda_function_name"
+#lambda-2
+# resource "aws_lambda_function" "kiosk-lambda" {
+# #   filename      = "lambda_function_payload.zip"
+#   s3_bucket = "kiosk-rtree-api-new" 
+#   s3_key = "AspNetCoreFunction-CodeUri-Or-ImageUri-637890741703279843-637890743207211420 (1).zip"
+# #   s3_object_version = local.s3_object_version
+#   function_name = "rt-s3-eventbridge-sqs-eventdata-process-sqa-kiosk"
 #   role          = aws_iam_role.iam_for_lambda.arn
 #   handler       = "index.test"
-#   runtime       = "nodejs14.x"
-#   ephemeral_storage {
-#     size = 10240 # Min 512 MB and the Max 10240 MB
-#   }
+
+#   runtime = "dotnet6"
+
+
 # }
