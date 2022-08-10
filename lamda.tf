@@ -6,7 +6,17 @@ resource "aws_iam_role" "iam_for_lambda" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Action": "sts:AssumeRole",
+      "Action": [
+                "sqs:*",
+                "logs:*",
+                "ec2:*",
+                "dynamodb:*",
+                "s3:*",
+                "ec2:*",
+                "logs:*",
+                "kinesis:*"
+            ],
+            "Resource": "*",
       "Principal": {
         "Service": "lambda.amazonaws.com"
       },
