@@ -59,7 +59,7 @@ resource "aws_lambda_function" "kiosk-lambda" {
 #   s3_object_version = local.s3_object_version
   function_name = "rt-s3-eventbridge-sqs-dailybatch-process-sqa-kiosk"
   role          = aws_iam_role.iam_for_lambda.arn
-  handler       = "index.test"
+  handler       = "DATA_MIGRATION::DATA_MIGRATION.Function::FunctionHandler"
   timeout       = 600
 
   runtime = "dotnet6"
@@ -77,7 +77,7 @@ resource "aws_lambda_function" "kiosk-lambda-dev" {
 #   s3_object_version = local.s3_object_version
   function_name = "rt-s3-eventbridge-sqs-eventdata-process-sqa-kiosk"
   role          = aws_iam_role.iam_for_lambda.arn
-  handler       = "index.test"
+  handler       = "DATA_MIGRATION::DATA_MIGRATION.Function::FunctionHandler"
   timeout       = 600
 
   runtime = "dotnet6"
