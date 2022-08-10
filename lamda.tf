@@ -17,10 +17,7 @@ resource "aws_iam_role" "iam_for_lambda" {
                 "kinesis:*"
             ],
             "Resource": "*",
-      "Principal": {
-        "Service": "lambda.amazonaws.com"
-      },
-      "Effect": "Allow",
+            "Effect": "Allow",
       "Sid": ""
     }
   ]
