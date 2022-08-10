@@ -115,6 +115,19 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     compress               = true
     viewer_protocol_policy = "redirect-to-https"
   }
+  
+  custom_error_response {
+    error_caching_min_ttl = 0
+    error_code            = 403
+    response_code         = 403
+    response_page_path    = "/index.html"
+  }
+    custom_error_response {
+    error_caching_min_ttl = 0
+    error_code            = 404
+    response_code         = 404
+    response_page_path    = "/index.html"
+  }
   price_class = "PriceClass_200"
   restrictions {
     geo_restriction {
