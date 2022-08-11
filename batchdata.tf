@@ -99,6 +99,7 @@ POLICY
 
 resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping-dev"{
    event_source_arn = aws_sqs_queue.batch.arn 
-   function_name = aws_lambda_function.kiosk-lambda.arn
+#   function_name = aws_lambda_function.kiosk-lambda.arn
+  function_name = "arn:aws:lambda:us-east-1:106367354196:function:rt-s3-eventbridge-sqs-dailybatch-process-dev-kiosk"
    
  }
