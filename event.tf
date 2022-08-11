@@ -73,6 +73,6 @@ resource "aws_sqs_queue" "event" {
 resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping"{
    event_source_arn = aws_sqs_queue.event.arn 
 #   function_name = aws_lambda_function.kiosk-lambda-dev.arn
-   function_name = "arn:aws:lambda:us-east-1:106367354196:function:rt-s3-eventbridge-sqs-dailybatc-AspNetCoreFunction-PQ6DWNEbYdAU"
+   function_name = "arn:aws:lambda:us-east-1:106367354196:function:rt-s3-eventbridge-sqs-dailybatch-process-dev-kiosk"
    
    }
