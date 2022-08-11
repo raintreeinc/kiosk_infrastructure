@@ -54,8 +54,8 @@ resource "aws_iam_role_policy_attachment" "test-attach" {
 resource "aws_lambda_function" "kiosk-lambda" {
  
 #   filename      = "lambda_function_payload.zip"
-  s3_bucket = "rt-s3-lambda-webapp-dev-kiosk" 
-  s3_key = "AspNetCoreFunction-CodeUri-Or-ImageUri-637952927665274965-637952927669751362.zip"
+#   s3_bucket = "rt-s3-lambda-webapp-dev-kiosk" 
+#   s3_key = "AspNetCoreFunction-CodeUri-Or-ImageUri-637952927665274965-637952927669751362.zip"
 #   s3_object_version = local.s3_object_version
   function_name = "rt-s3-eventbridge-sqs-dailybatch-process-sqa-kiosk"
   role          = aws_iam_role.iam_for_lambda.arn
