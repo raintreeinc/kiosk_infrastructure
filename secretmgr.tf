@@ -14,3 +14,23 @@ resource "aws_secretsmanager_secret_version" "sversion" {
    }
 EOF
 }
+
+
+resource "aws_iam_policy" "secretmanagerpolicy" {
+  name        = "rt-secretmanager-read-kiosk"
+  path        = "/"
+  description = "Policy to allow access to Secrets manager"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "secretsmanager: *",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+}
