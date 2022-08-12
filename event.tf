@@ -30,6 +30,7 @@ resource "aws_s3_bucket_versioning" "event" {
 }
 
 
+
 resource "aws_cloudwatch_event_rule" "kiosk-event-bridge-event" {
   name        = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-ebrule-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   description = "Capture each AWS Console s3 events"
@@ -69,10 +70,19 @@ resource "aws_sqs_queue" "event" {
   }
 }
 
+data "aws_caller_identity" "current" {}
+
+locals {
+    account_id = data.aws_caller_identity.current.account_id
+}
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
 
 resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping"{
    event_source_arn = aws_sqs_queue.event.arn 
 #   function_name = aws_lambda_function.kiosk-lambda-dev.arn
-   function_name = "arn:aws:lambda:us-east-1:106367354196:function:rt-s3-eventbridge-sqs-dailybatch-process-dev-kiosk"
+   function_name = "arn:aws:lambda:${lower(local.local_data.aws_region)}:${local.account_id}:function:${lower(local.local_data.tag_prefix)}-s3-eventbridge-sqs-dailybatch-process-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
    
    }
