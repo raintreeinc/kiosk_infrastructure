@@ -96,10 +96,10 @@ resource "aws_sqs_queue_policy" "test_sqs_policy" {
 POLICY
 }
 
-data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "currentid" {}
 
 locals {
-    accountid = data.aws_caller_identity.current.account_id
+    accountid = data.aws_caller_identity.currentid.account_id
 }
 
 output "accountid" {
