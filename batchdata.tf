@@ -99,16 +99,16 @@ POLICY
 data "aws_caller_identity" "current" {}
 
 locals {
-    account_id = data.aws_caller_identity.current.account_id
+    accountid = data.aws_caller_identity.current.account_id
 }
 
-output "account_id" {
-  value = data.aws_caller_identity.current.account_id
+output "accountid" {
+  value = data.aws_caller_identity.current.accountid
 }
 
 resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping-dev"{
    event_source_arn = aws_sqs_queue.batch.arn 
 #   function_name = aws_lambda_function.kiosk-lambda.arn
-  function_name = "arn:aws:lambda:${lower(local.local_data.aws_region)}:${local.account_id}:function:${lower(local.local_data.tag_prefix)}-s3-eventbridge-sqs-dailybatch-process-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  function_name = "arn:aws:lambda:${lower(local.local_data.aws_region)}:${local.accountid}:function:${lower(local.local_data.tag_prefix)}-s3-eventbridge-sqs-dailybatch-process-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
    
  }
