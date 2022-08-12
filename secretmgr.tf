@@ -16,7 +16,7 @@ EOF
 }
 
 
-resource "aws_iam_policy" "policy" {
+resource "aws_iam_policy" "secretmanagerpolicy" {
   name        = "rt-secretmanager-read-kiosk"
   path        = "/"
   description = "Policy to allow access to Secrets manager"
