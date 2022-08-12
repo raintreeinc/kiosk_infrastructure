@@ -103,7 +103,7 @@ locals {
 }
 
 output "accountid" {
-  value = data.aws_caller_identity.current.accountid
+  value = data.aws_caller_identity.currentid.account_id
 }
 
 resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping-dev"{
