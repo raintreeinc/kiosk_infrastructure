@@ -141,7 +141,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
   viewer_certificate {
     cloudfront_default_certificate = true
-    acm_certificate_arn      = "arn:aws:acm:us-east-1:106367354196:certificate/809e311a-024e-4c98-bc72-3ae368a577af"
+#     acm_certificate_arn      = "arn:aws:acm:us-east-1:106367354196:certificate/809e311a-024e-4c98-bc72-3ae368a577af"
   }
 }
 output "cloudfront_domain_name" {
