@@ -167,3 +167,26 @@ resource "aws_s3_bucket_public_access_block" "scdfnt" {
   //ignore_public_acls      = true
   //restrict_public_buckets = true
 }
+
+
+resource "aws_acm_certificate" "cert" {
+  domain_name       = "sample.koyasiva.tech"
+  validation_method = "DNS"
+  tags = {
+    Environment = "test"
+  }
+
+
+
+ lifecycle {
+    create_before_destroy = true
+  }
+}
+
+
+
+
+resource "aws_acm_certificate_validation" "example" {
+  certificate_arn = aws_acm_certificate.cert.arn
+  validation_record_fqdns =
+}
