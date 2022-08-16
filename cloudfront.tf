@@ -65,10 +65,10 @@ output "fileset-results" {
   value = fileset("../../mywebsite/", "**/*")
 }
 locals {
-  s3_origin_id = "s3-my-webapp.example.com"
+  s3_origin_id = "kiosk.dev.raintreeinc.com"
 }
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
-  comment = "s3-my-webapp.example.com"
+  comment = "kiosk.dev.raintreeinc.com"
 }
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
@@ -168,25 +168,3 @@ resource "aws_s3_bucket_public_access_block" "scdfnt" {
   //restrict_public_buckets = true
 }
 
-
-resource "aws_acm_certificate" "cert" {
-  domain_name       = "sample.koyasiva.tech"
-  validation_method = "DNS"
-  tags = {
-    Environment = "test"
-  }
-
-
-
- lifecycle {
-    create_before_destroy = true
-  }
-}
-
-
-
-
-resource "aws_acm_certificate_validation" "example" {
-  certificate_arn = aws_acm_certificate.cert.arn
-  validation_record_fqdns =
-}
