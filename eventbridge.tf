@@ -8,7 +8,7 @@
 #   "source": ["aws.s3"],
 #   "detail": {
 #     "bucket": {
-#       "name": ["rt-s3-raintree-eventdata-sqa-kiosk"]
+#       "name": ["${lower(local.local_data.tag_prefix)}-s3-raintree-eventdata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"]
 #     }
 #   }
 
