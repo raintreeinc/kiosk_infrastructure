@@ -78,6 +78,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
       origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
     }
   }
+  aliases           = ["*.dev.raintreeinc.com"]
   enabled             = true
   is_ipv6_enabled     = true
   comment             = "my-cloudfront"
@@ -144,8 +145,10 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     acm_certificate_arn      = "arn:aws:acm:us-east-1:106367354196:certificate/809e311a-024e-4c98-bc72-3ae368a577af"
     minimum_protocol_version = "TLSv1.1_2016"
     ssl_support_method       = "sni-only"
+#    domain_name       = "org1.dev.raintreeinc.com"
   }
 }
+
 output "cloudfront_domain_name" {
   value = aws_cloudfront_distribution.s3_distribution.domain_name
 }
