@@ -65,10 +65,10 @@ output "fileset-results" {
   value = fileset("../../mywebsite/", "**/*")
 }
 locals {
-  s3_origin_id = "s3-my-webapp.example.com"
+  s3_origin_id = "kiosk.dev.raintreeinc.com"
 }
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
-  comment = "s3-my-webapp.example.com"
+  comment = "kiosk.dev.raintreeinc.com"
 }
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
