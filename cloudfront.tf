@@ -145,6 +145,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     minimum_protocol_version = "TLSv1.1_2016"
     ssl_support_method       = "sni-only"
     domain_name       = "org1.dev.raintreeinc.com"
+    aliases           = "*.dev.raintreeinc.com"
   }
 }
 output "cloudfront_domain_name" {
