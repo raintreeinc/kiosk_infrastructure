@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "batch" {
-  bucket        = "${lower(local.local_data.tag_prefix)}-s3-raintree-batchdata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  bucket        = "${lower(local.local_data.tag_prefix)}-raintree-batchdata-s3-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   tags = {
-    Name        = "${lower(local.local_data.tag_prefix)}-s3-raintree-batchdata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+    Name        = "${lower(local.local_data.tag_prefix)}-raintree-batchdata-s3-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }
   lifecycle {
     ignore_changes = [
@@ -49,7 +49,7 @@ resource "aws_cloudwatch_event_rule" "kiosk-event-bridge-batch" {
   "detail-type": ["Object Created"],
   "detail": {
     "bucket": {
-      "name": ["${lower(local.local_data.tag_prefix)}-s3-raintree-batchdata-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"]
+      "name": ["${lower(local.local_data.tag_prefix)}-raintree-batchdata-s3-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"]
     }
   }
 }
