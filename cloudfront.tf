@@ -65,7 +65,8 @@ output "fileset-results" {
   value = fileset("../../mywebsite/", "**/*")
 }
 locals {
-  s3_origin_id = "kiosk.dev.raintreeinc.com"
+#  s3_origin_id = "kiosk.dev.raintreeinc.com"
+  s3_origin_id = "kiosk.sqa.raintreeinc.com"
 }
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
   comment = "kiosk.dev.raintreeinc.com"
@@ -78,7 +79,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
       origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
     }
   }
-  aliases           = ["*.dev.raintreeinc.com"]
+  #aliases           = ["*.dev.raintreeinc.com"]
+  aliases           = ["*.sqa.raintreeinc.com"]
   enabled             = true
   is_ipv6_enabled     = true
   comment             = "my-cloudfront"
