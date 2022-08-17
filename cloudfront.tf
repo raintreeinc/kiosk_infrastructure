@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "scdfnt" {
-  bucket = "${lower(local.local_data.tag_prefix)}-s3-frontend-webapp-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  bucket = "${lower(local.local_data.tag_prefix)}-frontend-webapp-s3-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   acl    = "private"
   versioning {
     enabled = false
