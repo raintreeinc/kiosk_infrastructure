@@ -20,8 +20,8 @@ resource "aws_api_gateway_domain_name" "kioskapigateway" {
 
 
 
-resource "aws_api_gateway_base_path_mapping" "backend" {
-  api_id      = "rt-s3-lambda-webapp-batch-sqa-kiosk"
-  domain_name = aws_api_gateway_domain_name.adminapigateway.id
-  stage_name = "dev"
-}
+#resource "aws_api_gateway_base_path_mapping" "backend" {
+#  api_id      = aws_api_gateway_rest_api.rt-s3-lambda-webapp-batch-sqa-kiosk.id
+#  domain_name = aws_api_gateway_domain_name.adminapigateway.id
+#  stage_name = "dev"
+#}
