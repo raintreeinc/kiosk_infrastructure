@@ -18,9 +18,23 @@ resource "aws_api_gateway_domain_name" "kioskapigateway" {
   }
 }
 
+resource "aws_api_gateway_rest_api" "backend" {
+  name        = "rt-s3-lambda-admin-webapp-dev-kiosk"
+  description = "rt-s3-lambda-admin-webapp-dev-kiosk"
+
+  endpoint_configuration {
+    types = ["Edge"]
+  }
+}
+
+resource "aws_api_gateway_deployment" "backend" {
+  rest_api_id = aws_api_gateway_rest_api.backend.id
+  stage_name  = "dev"
+}
+
 
 resource "aws_api_gateway_base_path_mapping" "backend" {
-  api_id      = "rt-s3-lambda-admin-webapp-dev-kiosk"
+  api_id      = aws_api_gateway_rest_api.backend.id
   domain_name = aws_api_gateway_domain_name.adminapigateway.id
   stage_name = "dev"
 }
