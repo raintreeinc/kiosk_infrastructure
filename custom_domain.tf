@@ -21,7 +21,7 @@ resource "aws_api_gateway_domain_name" "kioskapigateway" {
 
 
 resource "aws_api_gateway_base_path_mapping" "backend" {
-  api_id      = vswmz06br4
+  api_id      = "vswmz06br4"
   domain_name = aws_api_gateway_domain_name.adminapigateway.id
   stage_name = "dev"
 }
