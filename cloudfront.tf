@@ -142,7 +142,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
   viewer_certificate {
     cloudfront_default_certificate = true
-    acm_certificate_arn      = "arn:aws:acm:us-east-1:106367354196:certificate/809e311a-024e-4c98-bc72-3ae368a577af"
+#    acm_certificate_arn      = "arn:aws:acm:us-east-1:106367354196:certificate/809e311a-024e-4c98-bc72-3ae368a577af"
+    acm_certificate_arn = "arn:aws:acm:us-east-1:120192477360:certificate/a35f41e2-01d9-4f52-8b66-16215db7c047"
     minimum_protocol_version = "TLSv1.1_2016"
     ssl_support_method       = "sni-only"
 #    domain_name       = "org1.dev.raintreeinc.com"
