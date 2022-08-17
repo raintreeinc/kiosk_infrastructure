@@ -64,7 +64,7 @@ resource "aws_sqs_queue" "event" {
   max_message_size          = 262144
   message_retention_seconds = 86400
   receive_wait_time_seconds = 10
-  visibility_timeout_seconds = 180
+  visibility_timeout_seconds = 600
   tags = {
     Name                    = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }
