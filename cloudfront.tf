@@ -152,9 +152,17 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 }
 
-output "cloudfront_domain_name" {
-  value = aws_cloudfront_distribution.s3_distribution.domain_name
+locals {
+  cloudfront_domain_name =  aws_cloudfront_distribution.s3_distribution.domain_name
 }
+
+resource "cloudfront_domain_name" "domain_name" {
+  value = local.cloudfront_domain_name
+}
+output "domain_name" {
+  value = local.cloudfront_domain_name
+}
+
 data "aws_iam_policy_document" "s3_policy" {
   statement {
     actions   = ["s3:GetObject"]
@@ -177,14 +185,11 @@ resource "aws_s3_bucket_public_access_block" "scdfnt" {
   //restrict_public_buckets = true
 }
 
-locals {
-  cloudfront_domain_name = ""
-}
 
 resource "aws_route53_record" "cdn-cname" {
   zone_id = "Z01340631E9U2V3RCK8R4"
   name    = "org1-kiosk.sqa.raintreeinc.com"
   type    = "CNAME"
   ttl     = "300"
-  records = ["${local.cloudfront_domain_name}"]
+  records = ["${local.domain_name}"]
 }
