@@ -177,3 +177,14 @@ resource "aws_s3_bucket_public_access_block" "scdfnt" {
   //restrict_public_buckets = true
 }
 
+locals {
+  cloudfront_domain_name = ""
+}
+
+resource "aws_route53_record" "cdn-cname" {
+  zone_id = "Z01340631E9U2V3RCK8R4"
+  name    = "org1-kiosk.sqa.raintreeinc.com"
+  type    = "CNAME"
+  ttl     = "300"
+  records = ["${local.cloudfront_domain_name}"]
+}
