@@ -153,11 +153,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 }
 
 locals {
-  cloudfront_domain_name =  aws_cloudfront_distribution.s3_distribution.domain_name
+  domain_name =  aws_cloudfront_distribution.s3_distribution.domain_name
 }
 
 output "domain_name" {
-  value = local.cloudfront_domain_name
+  value = local.domain_name
 }
 
 data "aws_iam_policy_document" "s3_policy" {
