@@ -156,9 +156,6 @@ locals {
   cloudfront_domain_name =  aws_cloudfront_distribution.s3_distribution.domain_name
 }
 
-resource "cloudfront_domain_name" "domain_name" {
-  value = local.cloudfront_domain_name
-}
 output "domain_name" {
   value = local.cloudfront_domain_name
 }
