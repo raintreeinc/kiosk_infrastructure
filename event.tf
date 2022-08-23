@@ -70,6 +70,26 @@ resource "aws_sqs_queue" "event" {
   }
 }
 
+resource "aws_sqs_queue_policy" "event_sqs_policy" {
+  queue_url = aws_sqs_queue.batch.id
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Id": "sqspolicy",
+  "Statement": [
+    {
+      "Sid": "First",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "sqs:*",
+      "Resource": "${aws_sqs_queue.event.arn}"
+    }
+  ]
+}
+POLICY
+}
+
+
 data "aws_caller_identity" "current" {}
 
 locals {
