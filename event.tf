@@ -83,6 +83,6 @@ output "account_id" {
 resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping"{
    event_source_arn = aws_sqs_queue.event.arn 
 #   function_name = aws_lambda_function.kiosk-lambda-dev.arn
-   function_name = "arn:aws:lambda:${lower(local.local_data.aws_region)}:${local.account_id}:function:${lower(local.local_data.tag_prefix)}-s3-eventbridge-sqs-dailybatch-process-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+   function_name = "arn:aws:lambda:${lower(local.local_data.aws_region)}:${local.account_id}:function:${lower(local.local_data.tag_prefix)}-s3-eventbridge-sqs-event-process-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
    
    }
