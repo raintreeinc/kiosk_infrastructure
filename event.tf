@@ -71,7 +71,7 @@ resource "aws_sqs_queue" "event" {
 }
 
 resource "aws_sqs_queue_policy" "event_sqs_policy" {
-  queue_url = aws_sqs_queue.batch.id
+  queue_url = aws_sqs_queue.event.id
   policy = <<POLICY
 {
   "Version": "2012-10-17",
