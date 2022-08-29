@@ -47,7 +47,7 @@ jobs:
         #   -u ${{ secrets.ACCESS_TOKEN }} \
         #   --data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}' 
 
-          curl -X POST -H "Accept: application/vnd.github+json" -H "Authorization: token GITHUB_TOKEN" https://api.github.com/repos/OWNER/kiosk_serverless/actions/workflows/dotnet.yml/dispatches  -d '{"ref":"master"}'
+          curl -X POST -H "Accept: application/vnd.github+json" -H "Authorization: token GITHUB_TOKEN" https://api.github.com/repos/OWNER/kiosk_backend/actions/workflows/.github/workflows/dotnet.yml/dispatches  -d '{"ref":"development"}'
 
 
         
