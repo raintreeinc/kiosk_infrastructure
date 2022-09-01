@@ -140,7 +140,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
   }
   tags = {
-    Environment = -"${lower(local.local_data.tag_env)}"
+    Environment = -"development"
     Name        = "${lower(local.local_data.tag_prefix)}-cloudfront-dstribution-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }
   viewer_certificate {
