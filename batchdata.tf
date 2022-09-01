@@ -3,6 +3,7 @@ resource "aws_s3_bucket" "batch" {
   tags = {
     Name        = "${lower(local.local_data.tag_prefix)}-raintree-batchdata-s3-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }
+  force_destroy = true
   lifecycle {
     ignore_changes = [
       server_side_encryption_configuration
@@ -30,12 +31,12 @@ resource "aws_s3_bucket_notification" "batchnotification" {
 #   }
 # }
 
-resource "aws_s3_bucket_versioning" "batch" {
-  bucket = aws_s3_bucket.batch.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
+#resource "aws_s3_bucket_versioning" "batch" {
+#  bucket = aws_s3_bucket.batch.id
+#  versioning_configuration {
+#    status = "Enabled"
+#  }
+#}
 
 
 resource "aws_cloudwatch_event_rule" "kiosk-event-bridge-batch" {
