@@ -3,6 +3,7 @@
   tags = {
     Name        = "${lower(local.local_data.tag_prefix)}-raintree-eventdata-s3-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }
+  force_destroy = true
   lifecycle {
     ignore_changes = [
       server_side_encryption_configuration
@@ -22,12 +23,12 @@ resource "aws_s3_bucket_notification" "eventnotification" {
 
 
 
-resource "aws_s3_bucket_versioning" "event" {
-  bucket = aws_s3_bucket.event.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
+#resource "aws_s3_bucket_versioning" "event" {
+#  bucket = aws_s3_bucket.event.id
+#  versioning_configuration {
+#    status = "Enabled"
+#  }
+#}
 
 
 
