@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "scdfnt" {
     error_document = "error.html"
  }
   tags = {
-    Environment = ${lower(local.local_data.tag_env)}
+    Environment = "${lower(local.local_data.tag_env)}"
     Name        = "${lower(local.local_data.tag_prefix)}-frontend-webapp-s3-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }
 }
