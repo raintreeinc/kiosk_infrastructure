@@ -9,8 +9,8 @@ resource "aws_s3_bucket" "scdfnt" {
     error_document = "error.html"
  }
   tags = {
-    Environment = "development"
-    Name        = "my-tag"
+    Environment = "${lower(local.local_data.tag_env)}"
+    Name        = "${lower(local.local_data.tag_prefix)}-frontend-webapp-s3-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }
 }
 resource "aws_s3_bucket_object" "html" {
@@ -65,11 +65,12 @@ output "fileset-results" {
   value = fileset("../../mywebsite/", "**/*")
 }
 locals {
-#  s3_origin_id = "kiosk.dev.raintreeinc.com"
-  s3_origin_id = "kiosk.sqa.raintreeinc.com"
+  s3_origin_id = "${lower(local.local_data.tag_prefix)}-webapp-origin-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+#  s3_origin_id = "kiosk.sqa.raintreeinc.com"
 }
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
-  comment = "kiosk.dev.raintreeinc.com"
+#  comment = "kiosk.dev.raintreeinc.com"
+  comment = "${lower(local.local_data.tag_prefix)}-webapp-origin-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
 }
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
@@ -80,10 +81,10 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
   }
   #aliases           = ["*.dev.raintreeinc.com"]
-  aliases           = ["*.sqa.raintreeinc.com"]
+  aliases           = ["*.${lower(local.local_data.tag_env)}.raintreeinc.com"]
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "my-cloudfront"
+  comment             = "${lower(local.local_data.tag_prefix)}-cloudfront-dstribution-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   default_root_object = "index.html"
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -139,13 +140,13 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
   }
   tags = {
-    Environment = "development"
-    Name        = "my-tag"
+    Environment = "${lower(local.local_data.tag_env)}"
+    Name        = "${lower(local.local_data.tag_prefix)}-cloudfront-dstribution-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }
   viewer_certificate {
     cloudfront_default_certificate = true
 #    acm_certificate_arn      = "arn:aws:acm:us-east-1:106367354196:certificate/809e311a-024e-4c98-bc72-3ae368a577af"
-    acm_certificate_arn = "arn:aws:acm:us-east-1:120192477360:certificate/a35f41e2-01d9-4f52-8b66-16215db7c047"
+    acm_certificate_arn = "${lower(local.local_data.acm_certificate_arn)}"
     minimum_protocol_version = "TLSv1.1_2016"
     ssl_support_method       = "sni-only"
 #    domain_name       = "org1.dev.raintreeinc.com"
@@ -184,8 +185,8 @@ resource "aws_s3_bucket_public_access_block" "scdfnt" {
 
 
 resource "aws_route53_record" "cdn-cname" {
-  zone_id = "Z01340631E9U2V3RCK8R4"
-  name    = "org1-kiosk.sqa.raintreeinc.com"
+  zone_id = "${lower(local.local_data.zone_id)}"
+  name    = "org1-kiosk.${lower(local.local_data.tag_env)}.raintreeinc.com"
   type    = "CNAME"
   ttl     = "300"
   records = ["${local.domain_name}"]
