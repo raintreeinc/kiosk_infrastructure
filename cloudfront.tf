@@ -140,7 +140,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
   }
   tags = {
-    Environment = -${lower(local.local_data.tag_env)}
+    Environment = -"${lower(local.local_data.tag_env)}"
     Name        = "${lower(local.local_data.tag_prefix)}-cloudfront-dstribution-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }
   viewer_certificate {
@@ -185,7 +185,7 @@ resource "aws_s3_bucket_public_access_block" "scdfnt" {
 
 
 resource "aws_route53_record" "cdn-cname" {
-  zone_id = ${lower(local.local_data.zone_id)}
+  zone_id = "${lower(local.local_data.zone_id)}"
   name    = "org1-kiosk.${lower(local.local_data.tag_env)}.raintreeinc.com"
   type    = "CNAME"
   ttl     = "300"
