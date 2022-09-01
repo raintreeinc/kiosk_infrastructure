@@ -3,7 +3,7 @@
   tags = {
     Name        = "${lower(local.local_data.tag_prefix)}-raintree-eventdata-s3-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
   }
-  force_Destroy = true
+  force_destroy = true
   lifecycle {
     ignore_changes = [
       server_side_encryption_configuration
