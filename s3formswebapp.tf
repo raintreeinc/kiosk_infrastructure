@@ -202,7 +202,7 @@ locals {
   domain_name =  aws_cloudfront_distribution.s3_distribution.domain_name
 }
 
-output "domain_name" {
+output "domain_name_new" {
   value = local.domain_name
 }
 
@@ -229,7 +229,7 @@ resource "aws_s3_bucket_public_access_block" "scdfntnew" {
 }
 
 
-resource "aws_route53_record" "cdn-cname" {
+resource "aws_route53_record" "cdn-cname-new" {
   zone_id = "${lower(local.local_data.zone_id)}"
   name    = "kiosk-forms.${lower(local.local_data.tag_env)}.raintreeinc.com"
   type    = "CNAME"
