@@ -110,7 +110,7 @@ output "fileset-results-new" {
   value = fileset("../../mywebsite/", "**/*")
 }
 locals {
-  s3_origin_id = "${lower(local.local_data.tag_prefix)}-forms-webapp-origin-new-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  s3_origin_id_new = "${lower(local.local_data.tag_prefix)}-forms-webapp-origin-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
 #  s3_origin_id = "kiosk.sqa.raintreeinc.com"
 }
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
@@ -120,7 +120,7 @@ resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
 resource "aws_cloudfront_distribution" "s3_distribution_new" {
   origin {
     domain_name = aws_s3_bucket.scdfntnew.bucket_regional_domain_name
-    origin_id   = local.s3_origin_id
+    origin_id   = local.s3_origin_id_new
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
     }
@@ -134,7 +134,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_new" {
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = local.s3_origin_id
+    target_origin_id = local.s3_origin_id_new
     forwarded_values {
       query_string = false
       cookies {
@@ -150,7 +150,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_new" {
     path_pattern     = "index.html"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id = local.s3_origin_id
+    target_origin_id = local.s3_origin_id_new
     forwarded_values {
       query_string = false
       headers      = ["Origin"]
