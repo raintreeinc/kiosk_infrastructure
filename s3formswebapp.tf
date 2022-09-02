@@ -10,10 +10,10 @@ resource "aws_s3_bucket" "new" {
   }
 }
 
-resource "aws_s3_bucket_acl" "new" {
-  bucket                = aws_s3_bucket.new.id
-  acl                   = "private"
-}
+# resource "aws_s3_bucket_acl" "new" {
+#   bucket                = aws_s3_bucket.new.id
+#   acl                   = "private"
+# }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "new" {
   bucket                = aws_s3_bucket.new.bucket
