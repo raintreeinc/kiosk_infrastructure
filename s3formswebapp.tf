@@ -113,7 +113,7 @@ locals {
   s3_origin_id_new = "${lower(local.local_data.tag_prefix)}-forms-webapp-origin-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
 #  s3_origin_id = "kiosk.sqa.raintreeinc.com"
 }
-resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
+resource "aws_cloudfront_origin_access_identity" "origin_access_identity_new" {
 #  comment = "kiosk.dev.raintreeinc.com"
   comment = "${lower(local.local_data.tag_prefix)}-forms-webapp-origin-new-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
 }
@@ -122,7 +122,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_new" {
     domain_name = aws_s3_bucket.scdfntnew.bucket_regional_domain_name
     origin_id   = local.s3_origin_id_new
     s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
+      origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity_new.cloudfront_access_identity_path
     }
   }
   #aliases           = ["*.dev.raintreeinc.com"]
@@ -212,7 +212,7 @@ data "aws_iam_policy_document" "s3_policy_new" {
     resources = ["${aws_s3_bucket.scdfntnew.arn}/*"]
     principals {
       type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.origin_access_identity.iam_arn]
+      identifiers = [aws_cloudfront_origin_access_identity.origin_access_identity_new.iam_arn]
     }
   }
 }
