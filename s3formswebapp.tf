@@ -66,7 +66,7 @@ resource "aws_s3_bucket_object" "htmlnew" {
   etag   = filemd5("../../mywebsite/${each.value}")
   content_type = "text/html"
 }
-resource "aws_s3_bucket_object" "svg" {
+resource "aws_s3_bucket_object" "svgnew" {
   for_each = fileset("../../mywebsite/", "**/*.svg")
   bucket = aws_s3_bucket.scdfntnew.bucket
   key    = each.value
@@ -74,7 +74,7 @@ resource "aws_s3_bucket_object" "svg" {
   etag   = filemd5("../../mywebsite/${each.value}")
   content_type = "image/svg+xml"
 }
-resource "aws_s3_bucket_object" "css" {
+resource "aws_s3_bucket_object" "cssnew" {
   for_each = fileset("../../mywebsite/", "**/*.css")
   bucket = aws_s3_bucket.scdfntnew.bucket
   key    = each.value
@@ -82,7 +82,7 @@ resource "aws_s3_bucket_object" "css" {
   etag   = filemd5("../../mywebsite/${each.value}")
   content_type = "text/css"
 }
-resource "aws_s3_bucket_object" "js" {
+resource "aws_s3_bucket_object" "jsnew" {
   for_each = fileset("../../mywebsite/", "**/*.js")
   bucket = aws_s3_bucket.scdfntnew.bucket
   key    = each.value
@@ -90,7 +90,7 @@ resource "aws_s3_bucket_object" "js" {
   etag   = filemd5("../../mywebsite/${each.value}")
   content_type = "application/javascript"
 }
-resource "aws_s3_bucket_object" "images" {
+resource "aws_s3_bucket_object" "imagesnew" {
   for_each = fileset("../../mywebsite/", "**/*.png")
   bucket = aws_s3_bucket.scdfntnew.bucket
   key    = each.value
