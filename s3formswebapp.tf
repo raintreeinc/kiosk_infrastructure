@@ -98,7 +98,7 @@ resource "aws_s3_bucket_object" "imagesnew" {
   etag   = filemd5("../../mywebsite/${each.value}")
   content_type = "image/png"
 }
-resource "aws_s3_bucket_object" "json" {
+resource "aws_s3_bucket_object" "jsonnew" {
   for_each = fileset("../../mywebsite/", "**/*.json")
   bucket = aws_s3_bucket.scdfntnew.bucket
   key    = each.value
@@ -106,7 +106,7 @@ resource "aws_s3_bucket_object" "json" {
   etag   = filemd5("../../mywebsite/${each.value}")
   content_type = "application/json"
 }
-output "fileset-results" {
+output "fileset-results-new" {
   value = fileset("../../mywebsite/", "**/*")
 }
 locals {
