@@ -218,7 +218,7 @@ data "aws_iam_policy_document" "s3_policy_new" {
 }
 resource "aws_s3_bucket_policy" "scdfntnew" {
   bucket = aws_s3_bucket.scdfntnew.id
-  policy = data.aws_iam_policy_document.s3_policy_new
+  policy = data.aws_iam_policy_document.s3_policy_new.json
 }
 resource "aws_s3_bucket_public_access_block" "scdfntnew" {
   bucket = aws_s3_bucket.scdfntnew.id
