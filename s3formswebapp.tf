@@ -199,7 +199,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_new" {
 }
 
 locals {
-  domain_name =  aws_cloudfront_distribution.s3_distribution_new.domain_name
+  domain_name_new =  aws_cloudfront_distribution.s3_distribution_new.domain_name
 }
 
 output "domain_name_new" {
