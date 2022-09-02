@@ -110,14 +110,14 @@ output "fileset-results-new" {
   value = fileset("../../mywebsite/", "**/*")
 }
 locals {
-  s3_origin_id = "${lower(local.local_data.tag_prefix)}-forms-webapp-origin-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  s3_origin_id = "${lower(local.local_data.tag_prefix)}-forms-webapp-origin-new-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
 #  s3_origin_id = "kiosk.sqa.raintreeinc.com"
 }
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
 #  comment = "kiosk.dev.raintreeinc.com"
-  comment = "${lower(local.local_data.tag_prefix)}-forms-webapp-origin-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
+  comment = "${lower(local.local_data.tag_prefix)}-forms-webapp-origin-new-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
 }
-resource "aws_cloudfront_distribution" "s3_distribution" {
+resource "aws_cloudfront_distribution" "s3_distribution_new" {
   origin {
     domain_name = aws_s3_bucket.scdfntnew.bucket_regional_domain_name
     origin_id   = local.s3_origin_id
@@ -199,14 +199,14 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 }
 
 locals {
-  domain_name =  aws_cloudfront_distribution.s3_distribution.domain_name
+  domain_name =  aws_cloudfront_distribution.s3_distribution_new.domain_name
 }
 
 output "domain_name_new" {
   value = local.domain_name
 }
 
-data "aws_iam_policy_document" "s3_policy" {
+data "aws_iam_policy_document" "s3_policy_new" {
   statement {
     actions   = ["s3:GetObject"]
     resources = ["${aws_s3_bucket.scdfntnew.arn}/*"]
@@ -218,7 +218,7 @@ data "aws_iam_policy_document" "s3_policy" {
 }
 resource "aws_s3_bucket_policy" "scdfntnew" {
   bucket = aws_s3_bucket.scdfntnew.id
-  policy = data.aws_iam_policy_document.s3_policy.json
+  policy = data.aws_iam_policy_document.s3_policy_new
 }
 resource "aws_s3_bucket_public_access_block" "scdfntnew" {
   bucket = aws_s3_bucket.scdfntnew.id
