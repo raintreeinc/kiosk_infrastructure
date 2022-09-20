@@ -112,4 +112,3 @@ resource "aws_iam_role_policy_attachment" "rt_kinesis_processing_kiosk" {
   role       = aws_iam_role.iam_for_lambda.name
   policy_arn = aws_iam_policy.allow_kinesis_processing.arn
 }
-
