@@ -12,7 +12,7 @@ resource "aws_dynamodb_kinesis_streaming_destination" "Patientstream" {
   table_name = "Patients"
 }
 
-resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping-dev"{
+resource "aws_lambda_event_source_mapping" "dynamodb-kinesis-stream-updates"{
    event_source_arn = aws_kinesis_stream.Kioskstream.arn
    function_name = "arn:aws:lambda:${lower(local.local_data.aws_region)}:${local.accountid}:function:${lower(local.local_data.tag_prefix)}-dynamodb-kinesis-stream-updates-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
    
@@ -21,7 +21,7 @@ resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping-dev"{
 
 # IAM Role Creation
 
-resource "aws_iam_role" "iam_for_lambda" {
+resource "aws_iam_role" "iam_for_lambda_kiosk" {
   name = "rt_iam_for_lambda_kiosk"
 
   assume_role_policy = <<EOF
@@ -104,11 +104,11 @@ EOF
 # Attach IAM Policies to Roles
 
 resource "aws_iam_role_policy_attachment" "rt_lambda_logs_kiosk" {
-  role       = aws_iam_role.iam_for_lambda.name
+  role       = aws_iam_role.iam_for_lambda_kiosk.name
   policy_arn = aws_iam_policy.allow_logging.arn
 }
 
 resource "aws_iam_role_policy_attachment" "rt_kinesis_processing_kiosk" {
-  role       = aws_iam_role.iam_for_lambda.name
+  role       = aws_iam_role.iam_for_lambda_kiosk.name
   policy_arn = aws_iam_policy.allow_kinesis_processing.arn
 }
