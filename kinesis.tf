@@ -2,7 +2,6 @@
 
 resource "aws_kinesis_stream" "Kioskstream" {
   name        = "Kiosk_Updates"
-  shard_count = 1
   stream_mode_details {
     stream_mode = "ON_DEMAND"
   }
