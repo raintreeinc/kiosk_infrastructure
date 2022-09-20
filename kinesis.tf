@@ -15,7 +15,7 @@ resource "aws_dynamodb_kinesis_streaming_destination" "Patientstream" {
 resource "aws_lambda_event_source_mapping" "dynamodb-kinesis-stream-updates"{
    event_source_arn = aws_kinesis_stream.Kioskstream.arn
    function_name = "arn:aws:lambda:${lower(local.local_data.aws_region)}:${local.accountid}:function:${lower(local.local_data.tag_prefix)}-dynamodb-kinesis-stream-updates-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-   
+   starting_position = "LATEST"
  }
 
 
