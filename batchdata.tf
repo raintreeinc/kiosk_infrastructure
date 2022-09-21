@@ -73,9 +73,7 @@ resource "aws_sqs_queue" "batch" {
   receive_wait_time_seconds = 10
   visibility_timeout_seconds = 600
 
-  tags = {
-    Environment = var.Environment
-  }
+  
 }
 
 resource "aws_sqs_queue_policy" "test_sqs_policy" {

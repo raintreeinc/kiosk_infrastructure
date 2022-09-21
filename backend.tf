@@ -1,24 +1,19 @@
-terraform {
-  backend "s3" {
-    bucket          = "use1-dev-devops-tfstate"
-    key             = "kiosk_infrastructure/terraform.tfstate"
-    region          = "us-east-1"
-    dynamodb_table  = "use1-dev-devops-tfstate-lock"
-    encrypt         = true
-  }
-}
-
 #terraform {
 #  backend "s3" {
-#    bucket          = "use1-${lower(local.local_data.tag_env)}-devops-tfstate"
+#    bucket          = "use1-dev-devops-tfstate"
 #    key             = "kiosk_infrastructure/terraform.tfstate"
-#    region          = "${lower(local.local_data.aws_region)}"
-#    dynamodb_table  = "use1-${lower(local.local_data.tag_env)}-devops-tfstate-lock"
+#    region          = "us-east-1"
+#    dynamodb_table  = "use1-uat-devops-tfstate-lock"
 #    encrypt         = true
 #  }
 #}
 
-
-
-
-
+terraform {
+  backend "s3" {
+    bucket          = "use1-uat-infra-tfstate"
+    key             = "kiosk_infrastructure/terraform.tfstate"
+    region          = "us-east-1"
+    dynamodb_table  = "use1-uat-infra-tfstate-lock"
+    encrypt         = true
+  }
+}
