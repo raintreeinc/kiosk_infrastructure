@@ -1,4 +1,13 @@
+resource "aws_dynamodb_table" "Patients" {
+  name             = "Patients"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
 
+  attribute {
+    name = "pk"
+    type = "S"
+  }
+}
 
 resource "aws_kinesis_stream" "Kioskstream" {
   name        = "Kiosk_Updates"
