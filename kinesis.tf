@@ -19,6 +19,22 @@ resource "aws_lambda_event_source_mapping" "dynamodb-kinesis-stream-updates"{
  }
 
 
+# DynamoDB Tables
+
+resource "aws_dynamodb_table" "Patients1" {
+  name             = "Patients1"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+  stream_enabled   = true
+  stream_view_type = "NEW_AND_OLD_IMAGES"
+
+  attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+
 # IAM Role Creation
 
 resource "aws_iam_role" "iam_for_lambda_kiosk" {
