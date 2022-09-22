@@ -128,7 +128,7 @@ resource "aws_iam_policy" "allow_lambda_dynamodb_Access" {
       "Action": [
         "dynamodb:*"
       ],
-      "Resource": "arn:aws:dynamodb:*:*:*"",
+      "Resource": "arn:aws:dynamodb:*:*:*",
       "Effect": "Allow"
     }
   ]
