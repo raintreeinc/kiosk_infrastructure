@@ -115,6 +115,27 @@ resource "aws_iam_policy" "allow_kinesis_processing" {
 EOF
 }
 
+resource "aws_iam_policy" "allow_lambda_dynamodb_Access" {
+  name        = "rt_allow_lambda_dynamodb_kiosk"
+  path        = "/"
+  description = "IAM policy for dynamodb access from a lambda"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "dynamodb:*"
+      ],
+      "Resource": "arn:aws:dynamodb:*:*:*"",
+      "Effect": "Allow"
+    }
+  ]
+}
+EOF
+}
+
 # Attach IAM Policies to Roles
 
 resource "aws_iam_role_policy_attachment" "rt_lambda_logs_kiosk" {
@@ -125,4 +146,10 @@ resource "aws_iam_role_policy_attachment" "rt_lambda_logs_kiosk" {
 resource "aws_iam_role_policy_attachment" "rt_kinesis_processing_kiosk" {
   role       = aws_iam_role.iam_for_lambda_kiosk.name
   policy_arn = aws_iam_policy.allow_kinesis_processing.arn
+}
+
+
+resource "aws_iam_role_policy_attachment" "rt_lambda_dynamodb_kiosk" {
+  role       = aws_iam_role.iam_for_lambda_kiosk.name
+  policy_arn = aws_iam_policy.allow_lambda_dynamodb_Access.arn
 }
