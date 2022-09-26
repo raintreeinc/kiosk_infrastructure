@@ -1,6 +1,5 @@
 
 # DynamoDB Tables
-
 resource "aws_dynamodb_table" "Patients" {
   name             = "Patients"
   hash_key         = "pk"
