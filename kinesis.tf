@@ -23,6 +23,246 @@ attribute {
   }
 }
 
+"aws_dynamodb_table" "AppointmentType" {
+  name             = "AppointmentType"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "Contacts" {
+  name             = "Contacts"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "CommPref" {
+  name             = "CommPref"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+
+"aws_dynamodb_table" "Ctype" {
+  name             = "Ctype"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "Doctor" {
+  name             = "Doctor"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "Insurance" {
+  name             = "Insurance"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "Location" {
+  name             = "Location"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "SessionContext" {
+  name             = "SessionContext"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "TenantConfiguration" {
+  name             = "TenantConfiguration"
+  hash_key         = "TenantId"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "TenantId"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "Abn" {
+  name             = "Abn"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "Lefs" {
+  name             = "Lefs"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "NeckDisabilityIndex" {
+  name             = "NeckDisabilityIndex"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "Oswestry" {
+  name             = "Oswestry"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+
+"aws_dynamodb_table" "PainDrawing" {
+  name             = "PainDrawing"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "PformCrels" {
+  name             = "PformCrels"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "PformMedsp" {
+  name             = "PformMedsp"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "Pmh" {
+  name             = "Pmh"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "Ppmh" {
+  name             = "Ppmh"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "QuickDash" {
+  name             = "QuickDash"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+"aws_dynamodb_table" "ClientTokens" {
+  name             = "ClientTokens"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+resource "aws_dynamodb_table" "Patients" {
+  name             = "Patients"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
+resource "aws_dynamodb_table" "Appointments" {
+  name             = "Appointments"
+  hash_key         = "pk"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "pk"
+    type = "S"
+  }
+}
+
 resource "aws_dynamodb_table" "AppointmentType" {
   name             = "AppointmentType"
   hash_key         = "pk"
@@ -278,7 +518,6 @@ attribute {
     type = "S"
   }
 }
-
 
 
 
