@@ -276,11 +276,33 @@ attribute {
     name = "id"
     type = "S"
   }
+attribute {
+	name = "SubDomain"
+	type = "S"
+	}
+attribute {
+	name = "Client_Partner_pk"
+	type = "S"
+	}
+attribute {
+	name = "ClientId"
+	type = "S"
+	}		
+attribute {
+	name = "PartnerId"
+	type = "S"
+	}	
+global_secondary_index {
+	name               = "TenantBySubDomain"
+	hash_key           = "SubDomain"
+	projection_type    = "ALL"
+	}
+global_secondary_index {
+	name               = "TenantByClientPartner"
+	hash_key           = "Client_Partner_pk"
+	projection_type    = "ALL"
+	}
 }
-
-
-
-
 
 
 resource "aws_kinesis_stream" "Kioskstream" {
