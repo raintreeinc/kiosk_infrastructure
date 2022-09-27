@@ -61,10 +61,10 @@ resource "aws_cloudwatch_event_target" "sqs" {
 
 resource "aws_sqs_queue" "event" {
   name                      = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-  delay_seconds             = 6
+  delay_seconds             = 0
   max_message_size          = 262144
   message_retention_seconds = 86400
-  receive_wait_time_seconds = 10
+  receive_wait_time_seconds = 0
   visibility_timeout_seconds = 600
   tags = {
     Name                    = "${lower(local.local_data.tag_prefix)}-eventdata-sqs-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
@@ -105,5 +105,6 @@ resource "aws_lambda_event_source_mapping" "kiosk-sqs-lambdamapping"{
    event_source_arn = aws_sqs_queue.event.arn 
 #   function_name = aws_lambda_function.kiosk-lambda-dev.arn
    function_name = "arn:aws:lambda:${lower(local.local_data.aws_region)}:${local.account_id}:function:${lower(local.local_data.tag_prefix)}-s3-eventbridge-sqs-event-process-${lower(local.local_data.tag_env)}-${lower(local.local_data.tag_project)}"
-   
+   batch_size = 10
+   maximum_batching_window_in_seconds = 1
    }
