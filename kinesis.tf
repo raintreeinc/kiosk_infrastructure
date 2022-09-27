@@ -284,14 +284,6 @@ attribute {
 	name = "Client_Partner_pk"
 	type = "S"
 	}
-attribute {
-	name = "ClientId"
-	type = "S"
-	}		
-attribute {
-	name = "PartnerId"
-	type = "S"
-	}	
 global_secondary_index {
 	name               = "TenantBySubDomain"
 	hash_key           = "SubDomain"
