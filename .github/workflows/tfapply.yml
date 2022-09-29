@@ -28,12 +28,8 @@ jobs:
         workflow: tfplan.yml
         name: TerraformPlan
 
-    #- name: 'Apply Terraform Plan'
-  call-workflow-in-kiosk_frontend-repo:
-    uses: raintreeinc/kiosk_frontend/.github/workflows/node.js.yml@sprint-16
-    secrets: inherit
-      
-      #run: |
+    - name: 'Apply Terraform Plan'
+     #run: |
         #curl -X POST https://api.github.com/repos/raintreeinc/kiosk_serverless/dispatches \
         #  -H 'Accept: application/vnd.github.everest-preview+json' \
         #  -u ${{ secrets.ACCESS_TOKEN }} \
