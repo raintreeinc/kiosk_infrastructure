@@ -28,9 +28,9 @@ jobs:
         workflow: tfplan.yml
         name: TerraformPlan
 
-    - name: 'Apply Terraform Plan'
-      uses: raintreeinc/kiosk_frontend/.github/workflows/node.js.yml@sprint-16
-      secrets: inherit
+    #- name: 'Apply Terraform Plan'
+    uses: raintreeinc/kiosk_frontend/.github/workflows/node.js.yml@sprint-16
+    secrets: inherit
       
       #run: |
         #curl -X POST https://api.github.com/repos/raintreeinc/kiosk_serverless/dispatches \
