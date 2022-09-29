@@ -25,6 +25,7 @@ jobs:
       run: |
         export AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}"
         export AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+        terraform force-unlock use1-uat-infra-tfstate/kiosk_infrastructure/terraform.tfstate
         terraform init
         terraform plan -out src/tfplan -var-file="uat.tfvars.json"
 
