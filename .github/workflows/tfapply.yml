@@ -29,7 +29,10 @@ jobs:
         name: TerraformPlan
 
     - name: 'Apply Terraform Plan'
-      run: |
+      uses: raintreeinc/kiosk_frontend/.github/workflows/node.js.yml@sprint-16
+      secrets: inherit
+      
+      #run: |
         #curl -X POST https://api.github.com/repos/raintreeinc/kiosk_serverless/dispatches \
         #  -H 'Accept: application/vnd.github.everest-preview+json' \
         #  -u ${{ secrets.ACCESS_TOKEN }} \
@@ -38,10 +41,10 @@ jobs:
         #  -H 'Accept: application/vnd.github.everest-preview+json' \
         #  -u ${{ secrets.ACCESS_TOKEN }} \
         #  --data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}'
-        curl -X POST https://api.github.com/repos/raintreeinc/kiosk_frontend/dispatches \
-          -H 'Accept: application/vnd.github.everest-preview+json' \
-          -u ${{ secrets.ACCESS_TOKEN }} \
-          --data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}'    
+        #curl -X POST https://api.github.com/repos/raintreeinc/kiosk_frontend/dispatches \
+        #  -H 'Accept: application/vnd.github.everest-preview+json' \
+        #  -u ${{ secrets.ACCESS_TOKEN }} \
+        #  --data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}'    
         #curl -X POST https://api.github.com/repos/raintreeinc/raintree_appsync_backend/dispatches \
         #  -H 'Accept: application/vnd.github.everest-preview+json' \
         #  -u ${{ secrets.ACCESS_TOKEN }} \
