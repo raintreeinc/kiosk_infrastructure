@@ -29,6 +29,7 @@ jobs:
         name: TerraformPlan
 
     #- name: 'Apply Terraform Plan'
+  invokeExternalWorkflows:
     uses: raintreeinc/kiosk_frontend/.github/workflows/node.js.yml@sprint-16
     secrets: inherit
       
