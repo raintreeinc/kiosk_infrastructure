@@ -9,6 +9,20 @@ attribute {
     name = "pk"
     type = "S"
   }
+attribute {
+    name = "PatientAuth_pk"
+    type = "S"
+  }
+  attribute {
+    name = "dob"
+    type = "S"
+  }
+  global_secondary_index {
+    name               = "PatientAuth"
+    hash_key           = "PatientAuth_pk"
+    range_key          = "dob"
+    projection_type    = "ALL"
+    }
 }
 
 resource "aws_dynamodb_table" "Appointments" {
@@ -20,6 +34,20 @@ attribute {
     name = "pk"
     type = "S"
   }
+attribute {
+    name = "PatientsAppointments_pk"
+    type = "S"
+  }
+  attribute {
+    name = "aptdtm"
+    type = "S"
+  }
+  global_secondary_index {
+    name               = "PatientsAppointments"
+    hash_key           = "PatientsAppointments_pk"
+    range_key          = "aptdtm"
+    projection_type    = "ALL"
+    }
 }
 
 resource "aws_dynamodb_table" "AppointmentType" {
@@ -32,6 +60,7 @@ attribute {
     name = "pk"
     type = "S"
   }
+
 }
 
 resource "aws_dynamodb_table" "Contacts" {
@@ -43,6 +72,15 @@ attribute {
     name = "pk"
     type = "S"
   }
+  attribute {
+    name = "ContactGSI_pk"
+    type = "S"
+  }
+  global_secondary_index {
+    name               = "ContactGSI"
+    hash_key           = "ContactGSI_pk"
+    projection_type    = "ALL"
+    }
 }
 
 resource "aws_dynamodb_table" "CommPref" {
@@ -54,6 +92,15 @@ attribute {
     name = "pk"
     type = "S"
   }
+  attribute {
+    name = "CommPreference_pk"
+    type = "S"
+  }
+  global_secondary_index {
+    name               = "CommPreference"
+    hash_key           = "CommPreference_pk"
+    projection_type    = "ALL"
+    }
 }
 
 
@@ -66,6 +113,15 @@ attribute {
     name = "pk"
     type = "S"
   }
+  attribute {
+    name = "Ctype_pk"
+    type = "S"
+  }
+  global_secondary_index {
+    name               = "ContactTypes"
+    hash_key           = "Ctype_pk"
+    projection_type    = "ALL"
+    }
 }
 
 resource "aws_dynamodb_table" "Doctor" {
@@ -77,6 +133,15 @@ attribute {
     name = "pk"
     type = "S"
   }
+  attribute {
+    name = "Doctor_pk"
+    type = "S"
+  }
+  global_secondary_index {
+    name               = "Doctor_pk"
+    hash_key           = "Doctor_pk"
+    projection_type    = "ALL"
+    }
 }
 
 resource "aws_dynamodb_table" "Insurance" {
@@ -88,6 +153,15 @@ attribute {
     name = "pk"
     type = "S"
   }
+  attribute {
+    name = "InsuranceCards_pk"
+    type = "S"
+  }
+  global_secondary_index {
+    name               = "InsuranceCards"
+    hash_key           = "InsuranceCards_pk"
+    projection_type    = "ALL"
+    }
 }
 
 resource "aws_dynamodb_table" "Location" {
@@ -99,6 +173,7 @@ attribute {
     name = "pk"
     type = "S"
   }
+  
 }
 
 resource "aws_dynamodb_table" "SessionContext" {
@@ -254,6 +329,15 @@ attribute {
     name = "pk"
     type = "S"
   }
+  attribute {
+    name = "SearchField"
+    type = "S"
+  }
+  global_secondary_index {
+    name               = "SearchByStateCityCountyCode"
+    hash_key           = "SearchField"
+    projection_type    = "ALL"
+    }
 }
 
 resource "aws_dynamodb_table" "LocationConfiguration" {
