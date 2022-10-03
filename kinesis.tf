@@ -9,6 +9,10 @@ attribute {
     name = "pk"
     type = "S"
   }
+attribute {
+    name = "PatientAuth_pk"
+    type = "S"
+  }
   attribute {
     name = "dob"
     type = "S"
@@ -28,6 +32,10 @@ resource "aws_dynamodb_table" "Appointments" {
 
 attribute {
     name = "pk"
+    type = "S"
+  }
+attribute {
+    name = "PatientsAppointments_pk"
     type = "S"
   }
   attribute {
