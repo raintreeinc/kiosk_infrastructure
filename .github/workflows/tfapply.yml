@@ -56,4 +56,4 @@ jobs:
         export AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}"
         terraform init
         #terraform validate
-        terraform apply tfplan
+        terraform apply tfplan -refresh-only -auto-approve
