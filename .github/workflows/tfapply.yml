@@ -30,10 +30,10 @@ jobs:
 
     - name: 'Apply Terraform Plan'
       run: |
-        #curl -X POST https://api.github.com/repos/raintreeinc/kiosk_serverless/dispatches \
-          #-H 'Accept: application/vnd.github.everest-preview+json' \
-          #-u ${{ secrets.ACCESS_TOKEN }} \
-          #--data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}'
+        curl -X POST https://api.github.com/repos/raintreeinc/kiosk_serverless/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.ACCESS_TOKEN }} \
+          --data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}'
         #curl -X POST https://api.github.com/repos/raintreeinc/kiosk_backend/dispatches \
           #-H 'Accept: application/vnd.github.everest-preview+json' \
           #-u ${{ secrets.ACCESS_TOKEN }} \
@@ -42,10 +42,10 @@ jobs:
           #-H 'Accept: application/vnd.github.everest-preview+json' \
           #-u ${{ secrets.ACCESS_TOKEN }} \
           #--data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}'    
-        curl -X POST https://api.github.com/repos/raintreeinc/raintree_appsync_backend/dispatches \
-          -H 'Accept: application/vnd.github.everest-preview+json' \
-          -u ${{ secrets.ACCESS_TOKEN }} \
-          --data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}' 
+        #curl -X POST https://api.github.com/repos/raintreeinc/raintree_appsync_backend/dispatches \
+          #-H 'Accept: application/vnd.github.everest-preview+json' \
+          #-u ${{ secrets.ACCESS_TOKEN }} \
+          #--data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}' 
         #curl -X POST https://api.github.com/repos/raintreeinc/raintree_forms_frontend/dispatches \
           #-H 'Accept: application/vnd.github.everest-preview+json' \
           #-u ${{ secrets.ACCESS_TOKEN }} \
@@ -54,5 +54,5 @@ jobs:
         export AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}"
         export AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}"
         terraform init
-        #terraform validate
+        terraform validate
         terraform apply tfplan
