@@ -23,3 +23,16 @@ resource "aws_s3_bucket_versioning" "insuranc" {
     status = "Enabled"
   }
 }
+
+resource "aws_s3_bucket_cors_configuration" "insurances3cors" {
+  bucket = aws_s3_bucket.insuranc.id
+
+  cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["PUT", "POST", "GET", "DELETE"]
+    allowed_origins = ["*"]
+    expose_headers  = []
+    max_age_seconds = 3000
+  }
+
+}
