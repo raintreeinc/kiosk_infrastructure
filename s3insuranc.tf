@@ -24,7 +24,6 @@ resource "aws_s3_bucket_versioning" "insuranc" {
   }
 }
 
-
 resource "aws_s3_bucket_cors_configuration" "insurances3cors" {
   bucket = aws_s3_bucket.insuranc.id
 
