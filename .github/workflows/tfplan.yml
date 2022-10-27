@@ -33,4 +33,4 @@ jobs:
       with:
         name: TerraformPlan
         path: src/tfplan
-        retention-days: 1
+        retention-days: 5
