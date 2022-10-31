@@ -23,7 +23,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Download artifact
-      uses: dawidd6/action-download-artifact@v2 
+      uses: dawidd6/action-download-artifact@v2
       with:
         workflow: tfplan.yml
         name: TerraformPlan
@@ -31,9 +31,9 @@ jobs:
     - name: 'Apply Terraform Plan'
       run: |
         #curl -X POST https://api.github.com/repos/raintreeinc/kiosk_serverless/dispatches \
-        #  -H 'Accept: application/vnd.github.everest-preview+json' \
-        #  -u ${{ secrets.ACCESS_TOKEN }} \
-        #  --data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}'
+          #-H 'Accept: application/vnd.github.everest-preview+json' \
+          #-u ${{ secrets.ACCESS_TOKEN }} \
+          #--data '{"event_type": "Trigger", "client_payload": { "ACCESSKEY": "${{ secrets.AWS_ACCESS_KEY_ID }}", "SECRETKEY": "${{ secrets.AWS_SECRET_ACCESS_KEY }}"  }}'
         curl -X POST https://api.github.com/repos/raintreeinc/kiosk_backend/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.ACCESS_TOKEN }} \
