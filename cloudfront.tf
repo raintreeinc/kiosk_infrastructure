@@ -191,5 +191,3 @@ resource "aws_route53_record" "cdn-cname" {
   ttl     = "300"
   records = ["${local.domain_name}"]
 }
-
-
