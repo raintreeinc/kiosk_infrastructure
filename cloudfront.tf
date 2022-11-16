@@ -192,7 +192,7 @@ resource "aws_route53_record" "cdn-cname" {
   records = ["${local.domain_name}"]
 }
 
-resource "aws_route53_record" "cdn-cname" {
+resource "aws_route53_record" "cdn-cname-2" {
   zone_id = "${lower(local.local_data.zone_id)}"
   name    = "org2-kiosk.${lower(local.local_data.tag_env)}.raintreeinc.com"
   type    = "CNAME"
