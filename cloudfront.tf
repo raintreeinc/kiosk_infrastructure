@@ -200,5 +200,3 @@ resource "aws_route53_record" "cdn-cname" {
   records = ["${local.domain_name}"]
 }
 
-
-
