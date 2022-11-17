@@ -380,6 +380,16 @@ global_secondary_index {
 	}
 }
 
+resource "aws_dynamodb_table" "UpdateApiFailure" {
+  name             = "UpdateApiFailure"
+  hash_key         = "Id"
+  billing_mode     = "PAY_PER_REQUEST"
+
+attribute {
+    name = "Id"
+    type = "S"
+  }
+}
 
 resource "aws_kinesis_stream" "Kioskstream" {
   name        = "Kiosk_Updates"
