@@ -199,3 +199,19 @@ resource "aws_route53_record" "cdn-cname-2" {
   ttl     = "300"
   records = ["${local.domain_name}"]
 }
+
+resource "aws_route53_record" "cdn-cname-3" {
+  zone_id = "${lower(local.local_data.zone_id)}"
+  name    = "org3-kiosk.${lower(local.local_data.tag_env)}.raintreeinc.com"
+  type    = "CNAME"
+  ttl     = "300"
+  records = ["${local.domain_name}"]
+}
+
+resource "aws_route53_record" "cdn-cname-4" {
+  zone_id = "${lower(local.local_data.zone_id)}"
+  name    = "org4-kiosk.${lower(local.local_data.tag_env)}.raintreeinc.com"
+  type    = "CNAME"
+  ttl     = "300"
+  records = ["${local.domain_name}"]
+}
