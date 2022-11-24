@@ -8,7 +8,7 @@ jobs:
   terraform:
     name: Terraform
     runs-on: ubuntu-latest
-    environment: UAT
+    environment: SQA
     defaults:
       run:
         shell: bash
