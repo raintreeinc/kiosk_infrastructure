@@ -37,18 +37,3 @@ resource "aws_s3_bucket_cors_configuration" "assets3cors" {
 
 }
 
-resource "aws_s3_bucket_policy" "allow_access" {
-  bucket = aws_s3_bucket.example.id
-  policy = data.aws_iam_policy_document.allow_access.json
-}
-
-data "aws_iam_policy_document" "allow_access" {
-  statement {
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.asset.arn}/*"]
-    principals {
-      type        = "AWS"
-      identifiers = "*"
-    }
-  }
-}
