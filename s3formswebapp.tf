@@ -145,6 +145,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_new" {
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
+    compress               = true
   }
    ordered_cache_behavior {
     path_pattern     = "index.html"
